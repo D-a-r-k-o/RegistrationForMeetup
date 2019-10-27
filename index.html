@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meetup Registration</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <style>
+    h1 {
+       text-align: center;
+       font-family: 'Lobster', cursive;
+       color: brown;
+       font-size: 42px; 
+    }
+
+    #selectContainer {          
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #selectContainer label {
+        font-size: 17px;
+        width: 68px;
+        margin-right: 12px;
+    }
+
+    select {
+        flex-grow: 1;
+    }
+
+    form { 
+       max-width: 390px;  
+       background-color: lavender;
+       border: 1px solid brown;
+       border-radius: 20px;
+       padding-left: 90px;
+       padding-right: 90px;
+    }
+
+    .usr_info {
+        margin-top: 10px;
+    }
+
+    .usr_info input {
+        display: block;
+        width: 100%;
+    }
+
+    #otherValues {
+        display: block;
+        width: 100%;
+    }
+
+    #vspace {
+        margin-top: 5px;   
+    }
+
+    fieldset {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+     .usr_info label {
+        font-size: 17px;
+        width: 68px;  
+        text-align: right;
+        margin-right: 12px;
+    }  
+
+    body {
+       font-size: 20px;
+       background-color: lavender;
+       margin: 0px;
+       min-height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+    
+    html {
+       margin: 0px;
+       padding: 0px;
+       height: 100vh;
+    }
+
+    button {
+		background-color: green;
+        display: block;
+        width: 100%;
+        height: 45px;
+        padding: 10px;
+        border: 1px solid black;
+		border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        color: white;
+		font-size: 18px;
+    }
+		
+    button:hover {
+        background: lavender;
+        color: darkgreen;
+		border: 1px solid green;
+    }
+
+    @media (min-width: 425px) {
+        .usr_info {
+        display: flex;
+        }
+
+        .usr_info label {
+        flex: 0 0 68px;
+        }
+    }
+    </style>  
+  </head>
+
+  <body>  
+
+    <form action="meetupPHP.php" method="post">
+       
+      <h1>Register</h1>
+      <div id="selectContainer"> 
+        <label for="chooseBackgr">Wallpaper</label>   
+        <select id="chooseBackgr" name="backgr" onchange="changeBackground();">
+          <option value="Default" selected>gray</option>  
+          <option value="dark">dark</option>
+          <option value="Gradient">gradient</option>
+        </select>  
+      </div>
+		
+      <div>
+      <div class="usr_info">  
+        <label for="fname">Name</label>
+        <input type="text" id="fname" name="first_name">
+      </div>
+
+      <div class="usr_info">  
+        <label for="lname">Surname</label>
+        <input type="text" id="lname" name="last_name">
+      </div>
+
+      <div class="usr_info">  
+        <label for="e-mail">Email</label>
+        <input type="email" id="e-mail" name="e_mail">
+      </div>
+
+      <div class="usr_info">  
+        <label for="city">City/town</label>
+        <input type="text" id="city" name="your_city">
+      </div>
+    </div>
+
+      <fieldset>
+      <legend>Your interests</legend>  
+        <div>
+         <input type="checkbox" id="HTML" name="interests[]" value="HTML">
+         <label for="HTML">HTML</label>   
+        </div>
+
+        <div>
+         <input type="checkbox" id="CSS" name="interests[]" value="CSS">
+         <label for="CSS">CSS</label>   
+        </div>
+
+        <div>
+         <input type="checkbox" id="JS" name="interests[]" value="JavaScript">
+         <label for="JS">JavaScript</label>   
+        </div>
+
+        <div>
+         <input type="checkbox" id="node" name="interests[]" value="Node.js">
+         <label for="node">Node.js</label>   
+        </div>
+
+        <div>
+         <input type="checkbox" id="react" name="interests[]" value="React">
+         <label for="react">React</label>   
+        </div>
+
+        <div id="vspace">
+         <label for="otherValues">Others</label>
+         <input type="text" id="otherValues" name="other">   
+        </div>
+
+      </fieldset>
+
+      <button type="submit" name="subm_btn">coming!</button> 		
+     
+  </form>
+
+  <script>
+        function changeBackground() {
+        let bodyElem = document.querySelector("body");
+        let selectVal = document.querySelector("#chooseBackgr").value;
+        
+        if(selectVal === "Default") {
+            // prethodno setovan background image moramo ukloniti, inače će back. image imati prednost u odnosu na back. color!
+            // Dakle, setujemo background image na none
+            bodyElem.style.backgroundImage = "none";
+            bodyElem.style.backgroundColor = "lavender";
+         }
+        else if(selectVal === "dark") {
+            bodyElem.style.backgroundImage = "url('black.jpg')";
+         }
+        else {
+            bodyElem.style.backgroundImage = "linear-gradient(gray, lightgray)"; 
+         }
+        }
+        </script>  
+  </body>
+
+</html>
